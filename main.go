@@ -13,7 +13,6 @@ import (
 type Movie struct {
 	FullText   string `json:"fullText"`
 	Title      string `json:"title"`
-	Poster     string `json:"poster"`
 	Year       string `json:"year"`
 	Director   string `json:"director,omitempty"`
 	Genres     string `json:"genres"`
@@ -42,9 +41,6 @@ func crawl(firstDate string, lastDate string) {
 		tmpMovie := Movie{}
 		tmpMovie.Title = e.ChildText("p.name > a")
 		tmpMovie.Year = e.ChildText("p.name > span")
-		infoCollector.OnHTML(".search_results_last", func(pageElem *colly.HTMLElement) {
-			tmpMovie.Poster = pageElem.ChildAttr("a.styles_posterLink__C1HRc > img.film-poster", "src")
-		})
 
 		{
 			text := e.ChildText("div.info > span.gray")
