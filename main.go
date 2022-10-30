@@ -11,7 +11,6 @@ import (
 )
 
 type Movie struct {
-	FullText   string `json:"fullText"`
 	Title      string `json:"title"`
 	Year       string `json:"year"`
 	Director   string `json:"director,omitempty"`
@@ -44,7 +43,6 @@ func crawl(firstDate string, lastDate string) {
 
 		{
 			text := e.ChildText("div.info > span.gray")
-			tmpMovie.FullText = text
 			tmpMovie.Director = elementInfo.Director(text)
 			tmpMovie.Genres = elementInfo.Genres(text)
 			tmpMovie.MainActors = elementInfo.MainActors(text)
